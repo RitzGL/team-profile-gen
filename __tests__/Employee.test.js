@@ -5,19 +5,14 @@ describe(`Employee`, ()=>{
 
         expect(()=>{
 
-            new Employee()
+            new Employee();
 
-        }).toThrow(`Error! No parameters passed to constructor!`)
+        }).toThrow(`Error! No parameters passed to constructor!`);
+    })
+
+    it(`throws an error when `, ()=>{
         
     })
 
-    it(`throws an error when given 1 parameter`, ()=>{
-
-        expect((name)=>{
-
-            new Employee(name)
-
-        }).toThrow(`Error! Additional parameters required!`)
-
-    })
+    
 })
