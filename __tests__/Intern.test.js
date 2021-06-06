@@ -44,7 +44,7 @@ describe(`Intern Methods`, ()=>{
         expect(intern.getSchool()).toBe("notre dame");
     })
 
-    it(`getRole returns 'Engineer'`, ()=>{
+    it(`getRole returns 'Intern'`, ()=>{
         let intern = new Intern("Maurizio",1,"email","notre dame")
         expect(intern.getRole()).toBe("Intern");
     })
