@@ -1,13 +1,16 @@
 const inquirer = require('inquirer');
-
+const Employee = require('./lib/Employee')
+const Engineer = require('./lib/Engineer')
+const Intern = require('./lib/Intern')
+const Manager = require('./lib/Manager')
 // get the type of employee to create from user
 async function getEmployeeType(){
     let employeeType = await inquirer.prompt([
         {
             type: 'list',
             name: 'employeeType',
-            message: 'Choose to add engineer, intern, manager or build report: ',
-            choices: ["Engineer","Intern","Manager","Build Report"],
+            message: 'Choose to add engineer, intern or manager: ',
+            choices: ["Engineer","Intern","Manager",],
         },
     ]);
     return employeeType;
@@ -21,7 +24,7 @@ async function getEngineerInfo(){
             message: 'Enter engineer\'s name: ',
         },
         {
-            type: 'input',
+            type: 'number',
             name: 'id',
             message: 'Enter engineer\'s id: ',
         },
@@ -50,7 +53,7 @@ async function getInternInfo(){
             message: 'Enter intern\'s name: ',
         },
         {
-            type: 'input',
+            type: 'number',
             name: 'id',
             message: 'Enter intern\'s id: ',
         },
@@ -79,7 +82,7 @@ async function getManagerInfo(){
             message: 'Enter manager\'s name: ',
         },
         {
-            type: 'input',
+            type: 'number',
             name: 'id',
             message: 'Enter manager\'s id: ',
         },
@@ -100,35 +103,86 @@ async function getManagerInfo(){
     return managerInfo;
 }
 
-async function main(){
+async function callAgain(){
 
+
+    let recursion = await inquirer.prompt([
+        {
+            type: "list",
+            message: "Would you like to add another Employee?",
+            name: "callAgain",
+            choices: ["Yes","No"],
+        },
+    ])
+
+    return recursion;
+}
+
+
+
+// populate array based on employee type
+async function getEmployees(employees){
     // get employee type
     let type = await getEmployeeType();
-    let employees = [];
     // invoke methods depending on what returns from getEmployeeType
     switch(type.employeeType){
         case "Engineer":
-            let engineer = await getEngineerInfo();
-            // let engineerObj = new Engineer(engineer.name,
-            // engineer.id,engineer.email,engineer.github)
-            // employees.push(engineerObj)
-            employees.push(engineer);
+            try {
+                let engineer = await getEngineerInfo();
+                let engineerObj = new Engineer(engineer.name, engineer.id, engineer.email, engineer.github);
+                employees.push(engineerObj);
+                let recursion = await callAgain();
+                if(recursion.callAgain === "Yes"){
+                    getEmployees(employees);
+                }
+            } catch (error) {
+                console.error(error);
+            }
             break;
+
         case "Intern":
-            let intern = await getInternInfo();
-            employees.push(intern);
+            try {
+                let intern = await getInternInfo();
+                let internObj = new Intern(intern.name, intern.id, intern.email, intern.school);
+                employees.push(internObj);
+                let recursion = await callAgain();
+                if(recursion.callAgain === "Yes"){
+                    getEmployees(employees);
+                }
+            } catch (error) {
+                console.error(error);   
+            }
             break;
+
         case "Manager":
-            let manager = await getManagerInfo();
-            employees.push(manager);
+            try {
+                let manager = await getManagerInfo();
+                let managerObj = new Manager(manager.name, manager.id, manager.email, manager.officeNumber);
+                employees.push(managerObj);
+                let recursion = await callAgain();
+                if(recursion.callAgain === "Yes"){
+                    getEmployees(employees);
+                }             
+            } catch (error) {
+                console.error(error);
+            }
             break;
+
         default:
             console.error("Class not found!");
     }
     console.log(employees);
+    return employees;
+}
+
+async function main(){
+    let employees = [];
+    employeess = await getEmployees(employees);
+    // console.log(employees);
 }
 
 main();
+// getEmployees();
 //   need to inquirer.prompt here
 // START
 
