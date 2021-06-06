@@ -1,6 +1,6 @@
 const Employee = require("../lib/Employee.js")
 
-describe(`Employee`, ()=>{
+describe(`Employee Properties`, ()=>{
     
     it(`throws an error when name is empty string`, ()=>{
         
