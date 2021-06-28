@@ -1,0 +1,8 @@
+#page-title{
+    background-color: crimson;
+    width:inherit;
+}
+
+.container-full-screen{
+    max-width: none !important;
+}
