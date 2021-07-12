@@ -195,7 +195,9 @@ async function main(){
     console.log(employees);
 }
 
-console.log(render())
+main();
+
+// console.log(render())
 
 // main();
 // getEmployees();
