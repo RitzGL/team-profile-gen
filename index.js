@@ -195,6 +195,25 @@ async function main(){
     console.log(employees);
 }
 
+function writeEngineerBuffer(employees){
+    
+}
+const engineerTemplate = `<section>
+<div class="card">
+  <div class="card-heading">
+    <h3>Name</h3>
+    <h3>Engineer</h3>
+  </div>
+  <div>
+    <ul>
+      <li>ID:</li>
+      <li>Email: ${engineer.email}</li>
+      <li>GitHub:</li>
+    </ul>
+  </div>
+</div>
+</section>`
+
 main();
 
 // console.log(render())
