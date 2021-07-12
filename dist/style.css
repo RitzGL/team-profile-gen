@@ -1,18 +1,7 @@
 body{
     margin: 0px;
 }
-
-main{
-    display: flex;
-    font-family: Arial, Helvetica, sans-serif;
-    margin-left: 15%;
-}
-
-main h3{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight:300;
-}
-
+/* nav bar */
 nav{
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
@@ -22,17 +11,28 @@ nav{
     margin: 0;
     padding: 0;
 }
-
+/* Title in the nav section */
 nav h2{
     text-align: center;   
     margin-left: 50%; 
 }
 
+/* main card stagin section */
+main{
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 15%;
+}
+main h3{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight:300;
+}
+
+/* card wrapper container */
 section{
     padding: 15px;
     width: 10%;
 }
-
 .card{
     margin: 0px;
     padding: 15px;
@@ -45,7 +45,6 @@ section{
         rgba(75, 75, 75, 0.685) 100%
     )
 }
-
 .card-heading{  
     text-align: center;
     margin: 0px;

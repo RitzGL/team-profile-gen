@@ -119,8 +119,6 @@ async function callAgain(){
     return recursion;
 }
 
-
-
 // populate array based on employee type
 async function getEmployees(employees){
     // get employee type
@@ -182,6 +180,70 @@ async function getEmployees(employees){
     return empArray;
 }
 
+// create an engineer card with engineer attributes
+function createEngineerCard(engineer){
+    return `<section>
+    <div class="card">
+      <div class="card-heading">
+        <h3>${engineer.name}</h3>
+        <h3>${engineer.getRole()}</h3>
+      </div>
+      <div>
+        <ul>
+          <li>ID: ${engineer.id}</li>
+          <li>Email: ${engineer.email}</li>
+          <li>GitHub: ${engineer.getGitHubName()}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section>`
+}
+
+// create a manager card with manager properties
+function createManagerCard(manager){
+    return `<section>
+    <div class="card">
+      <div class="card-heading">
+        <h3>${manager.name}</h3>
+        <h3>${manager.getRole()}</h3>
+      </div>
+      <div>
+        <ul>
+          <li>ID: ${manager.id}</li>
+          <li>Email: ${manager.email}</li>
+          <li>Office Number: ${manager.officeNumber}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section></section>
+  `
+}
+
+// create a manager card with intern properties
+function createInternCard(intern){
+    return `<section>
+    <div class="card">
+      <div class="card-heading">
+        <h3>${intern.name}</h3>
+        <h3>${intern.getRole()}</h3>
+      </div>
+      <div>
+        <ul>
+          <li>ID: ${intern.id}</li>
+          <li>Email: ${intern.email}</li>
+          <li>School: ${intern.school}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section></section>
+  `
+}
+
+
+
 async function main(){
     // problem might be trying to assign and pass in the same array.
     // and when trying to log it, it comes back as undefined, or with its contents changed from async
@@ -192,28 +254,16 @@ async function main(){
         // console.log(employees)
     let asyncEmployees = [];
     let employees = await getEmployees(asyncEmployees);
+    // TODO create a function that generates a card for engineer
+    // TODO create a function that generates a card for manager
+    // TODO create a function that generates a card for intern
+    // TODO create a function that returns a string with appended cards
     console.log(employees);
 }
 
 function writeEngineerBuffer(employees){
-    
-}
-const engineerTemplate = `<section>
-<div class="card">
-  <div class="card-heading">
-    <h3>Name</h3>
-    <h3>Engineer</h3>
-  </div>
-  <div>
-    <ul>
-      <li>ID:</li>
-      <li>Email: ${engineer.email}</li>
-      <li>GitHub:</li>
-    </ul>
-  </div>
-</div>
-</section>`
 
+}
 main();
 
 // console.log(render())
