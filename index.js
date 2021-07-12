@@ -3,7 +3,7 @@ const Employee = require('./lib/Employee')
 const Engineer = require('./lib/Engineer')
 const Intern = require('./lib/Intern')
 const Manager = require('./lib/Manager')
-const render = require('./lib/helper/profile-gen')
+const buildHTML = require('./lib/helper/profile-gen')
 // get the type of employee to create from user
 async function getEmployeeType(){
     let employeeType = await inquirer.prompt([
@@ -124,12 +124,7 @@ async function getEmployees(employees){
     // get employee type
     let empArray = [...employees];
     let type = await getEmployeeType();
-    // invoke methods depending on what returns from getEmployeeType
-    // switch case might have to be wrapped in another async function,
-    // given that the program always reaches the bottom, and returns, potentially breaking things
-    // in the function that invokes getEmployees()
-    // i could declare two arrays?? one that gets assigned once asynchronous things resolve (the one being passed in)
-    // and another one that gets assigned the value (the array awaiting for getEmployees to resolve)
+    
     switch(type.employeeType){
         case "Engineer":
             try {
@@ -180,113 +175,11 @@ async function getEmployees(employees){
     return empArray;
 }
 
-// create an engineer card with engineer attributes
-function createEngineerCard(engineer){
-    return `<section>
-    <div class="card">
-      <div class="card-heading">
-        <h3>${engineer.name}</h3>
-        <h3>${engineer.getRole()}</h3>
-      </div>
-      <div>
-        <ul>
-          <li>ID: ${engineer.id}</li>
-          <li>Email: ${engineer.email}</li>
-          <li>GitHub: ${engineer.getGitHubName()}</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-  <section>`
-}
-
-// create a manager card with manager properties
-function createManagerCard(manager){
-    return `<section>
-    <div class="card">
-      <div class="card-heading">
-        <h3>${manager.name}</h3>
-        <h3>${manager.getRole()}</h3>
-      </div>
-      <div>
-        <ul>
-          <li>ID: ${manager.id}</li>
-          <li>Email: ${manager.email}</li>
-          <li>Office Number: ${manager.officeNumber}</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-  <section></section>
-  `
-}
-
-// create a manager card with intern properties
-function createInternCard(intern){
-    return `<section>
-    <div class="card">
-      <div class="card-heading">
-        <h3>${intern.name}</h3>
-        <h3>${intern.getRole()}</h3>
-      </div>
-      <div>
-        <ul>
-          <li>ID: ${intern.id}</li>
-          <li>Email: ${intern.email}</li>
-          <li>School: ${intern.school}</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-  <section></section>
-  `
-}
-
-
-
 async function main(){
-    // problem might be trying to assign and pass in the same array.
-    // and when trying to log it, it comes back as undefined, or with its contents changed from async
-    // need to look into this more, and fix by EOD tomorrow
-    // i could do this:
-        // let asyncEmployees = []
-        // let employees = await getEmployees(asyncEmployees)
-        // console.log(employees)
     let asyncEmployees = [];
     let employees = await getEmployees(asyncEmployees);
-    // TODO create a function that generates a card for engineer
-    // TODO create a function that generates a card for manager
-    // TODO create a function that generates a card for intern
-    // TODO create a function that returns a string with appended cards
-    console.log(employees);
+    
+    buildHTML(employees);
 }
 
-function writeEngineerBuffer(employees){
-
-}
 main();
-
-// console.log(render())
-
-// main();
-// getEmployees();
-//   need to inquirer.prompt here
-// START
-
-//   Enter Manager's Name, Id, email and Office Number
-
-// PROMPT 
-
-    // Choose engineer
-        // Enter name, id, email, GitHub username
-        // return to menu
-
-    // Choose intern
-        // Enter name, id, email, school
-        // return to menu
-
-    // Generate report
-        // Application closes
-        // html is generated
-
-// END
