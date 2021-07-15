@@ -13,6 +13,26 @@ A command line application that asks user for employee type, prompts user for in
 
 ## Installation/Usage
 
-### Screenshots/Demo Video
+This project has a couple of dependencies. 
+
+In order to install the application, run this command: 
+
+`npm install`
+
+This will install inquirer and jest (development dependency).
+
+Once the packages have been installed, run the command: 
+
+`npm run start` or `npm start`
+
+The application will then run in the same terminal where you ran the command.
+
+## Demo Video
+
+Demo video: [Video Demo](https://drive.google.com/file/d/1-8V2gHvoY6accu90jAKeDhjwpMGnFBob/view?usp=sharing)
 
 ## Questions
+
+Questions regarding the app's functionality, or suggestions for improvement can all be forwarded to: 
+
+`ritz.gl.developer@outlook.com`
